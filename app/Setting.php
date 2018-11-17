@@ -11,6 +11,12 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Setting newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Setting query()
  * @mixin \Eloquent
+ * @property int $id
+ * @property string $key
+ * @property string|null $value
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Setting whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Setting whereKey($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Setting whereValue($value)
  */
 class Setting extends Model
 {

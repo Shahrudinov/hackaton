@@ -16,7 +16,6 @@ class CreateBooksTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('title')->nullable();
-            $table->string('author')->nullable();
             $table->date('year')->nullable();
             $table->string('image')->nullable();
             $table->integer('count')->nullable();
