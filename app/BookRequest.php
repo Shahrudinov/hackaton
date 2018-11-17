@@ -36,7 +36,7 @@ class BookRequest extends Model
 {
     protected $table = 'book_requests';
     protected $fillable = [
-        'user_id', 'book_id', 'count', 'completed', 'return_date'
+        'user_id', 'book_id', 'count', 'completed', 'return_date', 'comments'
     ];
 
     /**

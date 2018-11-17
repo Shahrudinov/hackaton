@@ -30,6 +30,7 @@
                                     <th>User</th>
                                     <th>Book</th>
                                     <th>Count</th>
+                                    <th>Comment</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
@@ -49,6 +50,9 @@
                                         </td>
                                         <td>
                                             {{$item->count}}
+                                        </td>
+                                        <td>
+                                            {{$item->comments}}
                                         </td>
                                         <td>
                                             <a href="{{ url()->route('request-book.done', ['id' => $item->id]) }}" title="Done">
