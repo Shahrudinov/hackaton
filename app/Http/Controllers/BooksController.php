@@ -61,7 +61,7 @@ class BooksController extends Controller
                     'book_id' => $book->id,
                     'count' => $request->count,
                     'completed' => false,
-                    'return_date' => $request->return_date,
+                    'return_date' => $request->return_date ?? now(),
                     'comments' => $request->comment,
                 ]);
             });
