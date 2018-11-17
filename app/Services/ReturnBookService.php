@@ -16,7 +16,8 @@ class ReturnBookService
 {
     public function returnBook(User $user, Book $book)
     {
-
+        $book->count = $book->count + 1;
+        $book->save();
         $user->books()->delete($book);
     }
 }
