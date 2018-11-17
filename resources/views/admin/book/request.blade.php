@@ -9,10 +9,6 @@
                 <div class="card">
                     <div class="card-header">Book</div>
                     <div class="card-body">
-                        <a href="{{ url('/admin/book/create') }}" class="btn btn-success btn-sm" title="Add New Book">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add New
-                        </a>
-
                         {!! Form::open(['method' => 'GET', 'url' => '/admin/book', 'class' => 'form-inline my-2 my-lg-0 float-right', 'role' => 'search'])  !!}
                         <div class="input-group">
                             <input type="text" class="form-control" name="search" placeholder="Search..." value="{{ request('search') }}">
@@ -30,29 +26,24 @@
                             <table class="table table-borderless">
                                 <thead>
                                 <tr>
-                                    <th>#</th><th>Title</th><th>Author</th><th>Year</th><th>Actions</th>
+                                    <th>#</th>
+                                    <th>User</th>
+                                    <th>Book</th>
+                                    <th>Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($requests as $item)
                                     <tr>
                                         <td>{{ $loop->iteration or $item->id }}</td>
-                                        <td>{{ $item->title }}</td><td>{{ $item->author }}</td><td>{{ $item->year }}</td>
                                         <td>
-                                            <a href="{{ url('/admin/book/' . $item->id) }}" title="View Book"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></button></a>
-                                            <a href="{{ url('/admin/book/' . $item->id . '/edit') }}" title="Edit Book"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
-                                            {!! Form::open([
-                                                'method' => 'DELETE',
-                                                'url' => ['/admin/book', $item->id],
-                                                'style' => 'display:inline'
-                                            ]) !!}
-                                            {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i>', array(
-                                                    'type' => 'submit',
-                                                    'class' => 'btn btn-danger btn-sm',
-                                                    'title' => 'Delete Book',
-                                                    'onclick'=>'return confirm("Confirm delete?")'
-                                            )) !!}
-                                            {!! Form::close() !!}
+                                            <a href="{{url()->route('user.show', $item->user()->id)}}">{{ $item->user->firstName }} {{ $item->user->lastName }}</a>
+                                        </td>
+                                        <td>
+                                            <a href="{{url()->route('book.swow', $item->book()->id)}}">{{ $item->book->title }}</a>
+                                        </td>
+                                        <td>
+                                            <a href="{{ url('/admin/book/' . $item->id) }}" title="Approve"><button class="btn btn-info btn-sm">Done</button></a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -60,7 +51,6 @@
                             </table>
                             <div class="pagination-wrapper"> {!! $requests->appends(['search' => Request::get('search')])->render() !!} </div>
                         </div>
-
                     </div>
                 </div>
             </div>

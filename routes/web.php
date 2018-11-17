@@ -35,6 +35,7 @@ Route::group(
 
         Route::get('readers', 'ReaderController@index' );
         Route::get('requests', 'BookRequestController@index' );
+        Route::get('done/{id}', 'BookRequestController@done' );
 
         Route::resource('roles', 'RolesController');
         Route::resource('permissions', 'PermissionsController');
