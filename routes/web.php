@@ -17,23 +17,21 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/books', 'BooksController@index')->name('books');
 
-Auth::routes();
+    Route::get('admin', 'Admin\AdminController@index');
+    Route::resource('admin/roles', 'Admin\RolesController');
+    Route::resource('admin/permissions', 'Admin\PermissionsController');
+    Route::resource('admin/users', 'Admin\UsersController');
+    Route::resource('admin/pages', 'Admin\PagesController');
+    Route::resource('admin/activitylogs', 'Admin\ActivityLogsController')->only([
+        'index', 'show', 'destroy'
+    ]);
+    Route::resource('admin/settings', 'Admin\SettingsController');
+    Route::get('admin/generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@getGenerator']);
+    Route::post('admin/generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@postGenerator']);
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('admin', 'Admin\AdminController@index');
-Route::resource('admin/roles', 'Admin\RolesController');
-Route::resource('admin/permissions', 'Admin\PermissionsController');
-Route::resource('admin/users', 'Admin\UsersController');
-Route::resource('admin/pages', 'Admin\PagesController');
-Route::resource('admin/activitylogs', 'Admin\ActivityLogsController')->only([
-    'index', 'show', 'destroy'
-]);
-Route::resource('admin/settings', 'Admin\SettingsController');
-Route::get('admin/generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@getGenerator']);
-Route::post('admin/generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@postGenerator']);
-
-Route::resource('admin/category', 'Admin\\CategoryController');
-Route::resource('admin/book', 'Admin\\BookController');
+    Route::resource('admin/category', 'Admin\\CategoryController');
+    Route::resource('admin/book', 'Admin\\BookController');
+});
