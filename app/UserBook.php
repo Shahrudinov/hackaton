@@ -27,9 +27,19 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserBook whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\UserBook whereUserId($value)
  * @mixin \Eloquent
+ * @property string $status
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\UserBook whereStatus($value)
  */
 class UserBook extends Model
 {
+    public const STATUS_RETURNED = 'RETURNED';
+    public const STATUS_TAKEN = 'TAKEN';
+
+    protected $table = 'user_books';
+    protected $fillable = [
+        'user_id', 'book_id', 'count', 'return_date', 'status'
+    ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

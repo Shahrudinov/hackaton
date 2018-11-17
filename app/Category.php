@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
  * App\Category
@@ -23,12 +22,10 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereParentId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereUpdatedAt($value)
+ * @property-read \App\Category|null $parent
  */
 class Category extends Model
 {
-    use LogsActivity;
-    
-
     /**
      * The database table used by the model.
      *
@@ -37,10 +34,10 @@ class Category extends Model
     protected $table = 'categories';
 
     /**
-    * The database primary key value.
-    *
-    * @var string
-    */
+     * The database primary key value.
+     *
+     * @var string
+     */
     protected $primaryKey = 'id';
 
     /**
@@ -50,21 +47,11 @@ class Category extends Model
      */
     protected $fillable = ['name', 'parent_id'];
 
-    public function category()
-    {
-        return $this->belogsTo('App/Category');
-    }
-    
-
     /**
-     * Change activity log event description
-     *
-     * @param string $eventName
-     *
-     * @return string
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function getDescriptionForEvent($eventName)
+    public function parent()
     {
-        return __CLASS__ . " model has been {$eventName}";
+        return $this->belongsTo(Category::class);
     }
 }

@@ -14,11 +14,11 @@ class CreateBooksTable extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
             $table->string('title')->nullable();
             $table->date('year')->nullable();
             $table->string('image')->nullable();
             $table->integer('count')->nullable();
+            $table->timestamps();
             });
     }
 

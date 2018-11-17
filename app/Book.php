@@ -31,31 +31,11 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Book whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Book whereYear($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Category[] $categories
  */
 class Book extends Model
 {
-    use LogsActivity;
-
-
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
     protected $table = 'books';
-
-    /**
-     * The database primary key value.
-     *
-     * @var string
-     */
-    protected $primaryKey = 'id';
-
-    /**
-     * Attributes that should be mass-assignable.
-     *
-     * @var array
-     */
     protected $fillable = ['title', 'author', 'year', 'image', 'count'];
 
     /**
@@ -74,17 +54,5 @@ class Book extends Model
     public function authors()
     {
         return $this->belongsToMany(Author::class);
-    }
-
-    /**
-     * Change activity log event description
-     *
-     * @param string $eventName
-     *
-     * @return string
-     */
-    public function getDescriptionForEvent($eventName)
-    {
-        return __CLASS__ . " model has been {$eventName}";
     }
 }

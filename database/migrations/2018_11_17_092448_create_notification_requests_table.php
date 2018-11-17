@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserBooksTable extends Migration
+class CreateNotificationRequestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,11 @@ class CreateUserBooksTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_books', function (Blueprint $table) {
+        Schema::create('notification_requests', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->index();
             $table->integer('book_id')->index();
-            $table->integer('count');
-            $table->timestamp('return_date');
-            $table->enum('status', [
-                'RETURNED', 'TAKEN'
-            ]);
+            $table->boolean('notificated')->default(false);
             $table->timestamps();
 
             $table->foreign('user_id')
@@ -30,7 +26,8 @@ class CreateUserBooksTable extends Migration
                 ->onDelete('cascade');
             $table->foreign('book_id')
                 ->references('id')
-                ->on('books');
+                ->on('books')
+                ->onDelete('cascade');
         });
     }
 
@@ -41,6 +38,6 @@ class CreateUserBooksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_books');
+        Schema::dropIfExists('notification_requests');
     }
 }
