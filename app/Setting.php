@@ -4,6 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Setting
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Setting newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Setting newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Setting query()
+ * @mixin \Eloquent
+ */
 class Setting extends Model
 {
     /**

@@ -5,6 +5,16 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 
+/**
+ * App\Role
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Spatie\Activitylog\Models\Activity[] $activity
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Permission[] $permissions
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Role newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Role newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Role query()
+ * @mixin \Eloquent
+ */
 class Role extends Model
 {
     use LogsActivity;
