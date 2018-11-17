@@ -29,22 +29,16 @@ class Role extends Model
 {
     use LogsActivity;
 
+    public const ADMIN = 'admin';
+    public const LIBRARIAN = 'librarian';
+    public const READER = 'reader';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = ['name', 'label'];
-
-    /**
-     * A role may be given various permissions.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function permissions()
-    {
-        return $this->belongsToMany(Permission::class);
-    }
 
     /**
      * Grant the given permission to a role.
@@ -56,6 +50,16 @@ class Role extends Model
     public function givePermissionTo(Permission $permission)
     {
         return $this->permissions()->save($permission);
+    }
+
+    /**
+     * A role may be given various permissions.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class);
     }
 
     /**

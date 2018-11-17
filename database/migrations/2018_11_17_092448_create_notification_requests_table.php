@@ -19,6 +19,15 @@ class CreateNotificationRequestsTable extends Migration
             $table->integer('book_id')->index();
             $table->boolean('notificated')->default(false);
             $table->timestamps();
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+            $table->foreign('book_id')
+                ->references('id')
+                ->on('books')
+                ->onDelete('cascade');
         });
     }
 
