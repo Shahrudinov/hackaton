@@ -139,14 +139,20 @@
                     {{--<img class="mr-3" src="..." alt="Generic placeholder image">--}}
                     <div class="media-body">
                         <a href="{{ route('profile.show', $review->user) }}">
-                            <h5 class="mt-0">{{ $review->user->first_name }} {{ $review->user->last_name }}</h5>
+                            <h5 class="mt-0">
+                                {{ $review->user->first_name }} {{ $review->user->last_name }}
+                            </h5>
                         </a>
                         <p>
                             <small>Оценка: {{ $review->stars }}</small>
                         </p>
                         {{ $review->comment }}
                     </div>
+                    <div class="media-body">
+                        <small>{{ $review->created_at->diffForHumans() }}</small>
+                    </div>
                 </div>
+                <hr>
             @endforeach
         </div>
 

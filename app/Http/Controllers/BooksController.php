@@ -95,7 +95,7 @@ class BooksController extends Controller
     public function storeReview(Request $request, Book $book)
     {
         Review::create([
-            'stars' => $request->stars,
+            'stars' => $request->stars ?? 0,
             'comment' => $request->comment,
             'book_id' => $book->id,
             'user_id' => Auth::user()->id,
