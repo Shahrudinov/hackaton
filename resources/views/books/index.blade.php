@@ -62,7 +62,20 @@
                                             Подробнее
                                         </a>
                                     </div>
-                                    <small class="text-muted">{{ $book->created_at }}</small>
+                                    <small class="text-muted">
+                                        @php
+                                            $estimate = 0;
+                                            $users = $book->reviews->count();
+                                            foreach ($book->reviews as $review) {
+                                                if ($review->stars) {
+                                                    $estimate = $estimate + $review->stars;
+                                                } else {
+                                                    $users--;
+                                                }
+                                            }
+                                        @endphp
+                                        Рейтинг: {{ $estimate }} / {{ $users }}
+                                    </small>
                                 </div>
                             </div>
                         </div>

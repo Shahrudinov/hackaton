@@ -35,6 +35,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\BookRequest[] $requests
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\UserBook[] $userBooks
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Book whereDescription($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Review[] $reviews
  */
 class Book extends Model
 {
@@ -73,5 +74,13 @@ class Book extends Model
     public function requests()
     {
         return $this->hasMany(BookRequest::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
     }
 }
