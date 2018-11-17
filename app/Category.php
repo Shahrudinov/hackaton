@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereParentId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereUpdatedAt($value)
  * @property-read \App\Category|null $parent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Book[] $books
  */
 class Category extends Model
 {
@@ -53,5 +54,13 @@ class Category extends Model
     public function parent()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function books()
+    {
+        return $this->hasMany(Book::class);
     }
 }

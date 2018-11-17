@@ -11,12 +11,31 @@
             @endphp
             <a href="?sort=title" class="btn btn-outline-info {{$active === 'title' ? 'active' : ''}}">По Названию</a>
             <a href="?sort=date" class="btn btn-outline-info {{$active === 'date' ? 'active' : ''}}">По Дате</a>
+
+            <div class="btn-group" role="group">
+                <button id="btnGroupDrop1" type="button"
+                        class="btn btn-outline-info dropdown-toggle {{$active === 'category' ? 'active' : ''}}"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    По категории
+                </button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    @foreach(\App\Category::all() as $category)
+                        <a class="dropdown-item"
+                           href="?sort=category&category={{$category->id}}">
+                            {{ $category->name }}
+                        </a>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </blockquote>
 
     <div class="album py-5 bg-light">
         <div class="container">
             <div class="row">
+                @if($books->isEmpty())
+                    <h5>По указанным параметрам книги не найдены</h5>
+                @endif
                 @foreach ($books as $book)
                     <div class="col-md-4">
                         <div class="card mb-4 box-shadow">
