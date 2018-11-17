@@ -49,7 +49,7 @@
                                 <p class="card-text">
                                 <h4>{{ $book->title }}</h4>
                                 {{ strlen($book->description) > 250 ? substr($book->description, 0, 250) . '...' : $book->description }}
-                                <div class="alert alert-info text-sm-left" role="alert">
+                                <div class="alert alert-info text-sm-left mt-3" role="alert">
                                     В наличии: @if($book->count) {{ $book->count }}
                                     @else
                                         <span class="text-danger">нет</span>
@@ -74,7 +74,7 @@
                                                 }
                                             }
                                         @endphp
-                                        Рейтинг: {{ $estimate }} / {{ $users }}
+                                        Рейтинг: {{ $estimate / ($users === 0 ? 1 : $users)  }} / {{ $users }}
                                     </small>
                                 </div>
                             </div>
