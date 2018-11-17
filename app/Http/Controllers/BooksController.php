@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Book;
 use App\BookCategory;
+use App\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -30,7 +31,7 @@ class BooksController extends Controller
                 $books = Book::where('count', '>', 0)->orderBy('created_at', 'desc')->get();
                 break;
             default:
-                $books = Book::orderBy('title', 'asc')->get();
+                $books = Book::orderBy('created_at', 'desc')->get();
         }
 
         return view('books.index', compact('books'));
@@ -91,9 +92,16 @@ class BooksController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function storeReview(Request $request, Book $book)
     {
-        //
+        Review::create([
+            'stars' => $request->stars ?? 0,
+            'comment' => $request->comment,
+            'book_id' => $book->id,
+            'user_id' => Auth::user()->id,
+        ]);
+
+        return back();
     }
 
     /**

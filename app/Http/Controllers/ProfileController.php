@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -43,9 +44,12 @@ class ProfileController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id = null)
     {
-        return view('profile.show');
+        if ($id === null) {
+            $id = Auth::user()->id;
+        }
+        return view('profile.show', ['id' => $id]);
     }
 
     /**

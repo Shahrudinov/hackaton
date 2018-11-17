@@ -19,6 +19,10 @@
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
+                <img src="https://www.nixsolutions.com/ru/wp-content/themes/nixsite6g/img/logo-sm.svg"
+                     height="auto"
+                     width="45px"
+                     class="img-fluid mb-2">
                 {{ config('app.name', 'Laravel') }}
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

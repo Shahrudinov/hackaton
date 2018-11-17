@@ -10,8 +10,11 @@ namespace App\Services;
 
 
 use App\Book;
+use App\BookRequest;
+use App\Mail\BookAllowed;
 use App\Models\User;
 use App\UserBook;
+use Illuminate\Support\Facades\Mail;
 
 class ReturnBookService
 {
@@ -22,6 +25,16 @@ class ReturnBookService
      */
     public function returnBook(User $user, Book $book, int $count = null): void
     {
+        // Send email if user wait for book
+        if ($book->count === 0) {
+            $nullBooksRequests = BookRequest::oldest()
+                ->where('book_id', $book->id)
+                ->where('completed', false)
+                ->get(['user_id']);
+
+            Mail::to(User::find($nullBooksRequests->user_id))->send(new BookAllowed($book));
+        }
+
         $userBook = UserBook::where([
            'user_id' => $user->id,
            'book_id' => $book->id

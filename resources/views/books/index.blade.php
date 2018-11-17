@@ -49,7 +49,7 @@
                                 <p class="card-text">
                                 <h4>{{ $book->title }}</h4>
                                 {{ strlen($book->description) > 250 ? substr($book->description, 0, 250) . '...' : $book->description }}
-                                <div class="alert alert-info text-sm-left" role="alert">
+                                <div class="alert alert-info text-sm-left mt-3" role="alert">
                                     В наличии: @if($book->count) {{ $book->count }}
                                     @else
                                         <span class="text-danger">нет</span>
@@ -62,7 +62,20 @@
                                             Подробнее
                                         </a>
                                     </div>
-                                    <small class="text-muted">{{ $book->created_at }}</small>
+                                    <small class="text-muted">
+                                        @php
+                                            $estimate = 0;
+                                            $users = $book->reviews->count();
+                                            foreach ($book->reviews as $review) {
+                                                if ($review->stars) {
+                                                    $estimate = $estimate + $review->stars;
+                                                } else {
+                                                    $users--;
+                                                }
+                                            }
+                                        @endphp
+                                        Рейтинг: {{ round($estimate / ($users === 0 ? 1 : $users), 2)  }}  (Проголосовали: {{ $users }})
+                                    </small>
                                 </div>
                             </div>
                         </div>

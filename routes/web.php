@@ -15,6 +15,10 @@ Route::get('/', function () {
     return redirect('/books');
 });
 
+Route::get('/home', function () {
+    return redirect('/books');
+});
+
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
@@ -34,6 +38,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/author/{author}', 'AuthorController@show')
         ->name('author.show')->where(['author' => '[0-9]+']);
+
+    Route::post('/books/{book}/review', 'BooksController@storeReview')
+        ->name('review.store')
+        ->where('book', '[0-9]+');
 });
 
 Route::group(
@@ -70,4 +78,5 @@ Route::group(
 
 Route::group(['prefix' => 'profile', 'middleware' => 'auth'], function () {
     Route::get('/', 'ProfileController@show')->name('profile.show');
+    Route::get('/{id}', 'ProfileController@show')->name('profile.show');
 });
