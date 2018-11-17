@@ -12,6 +12,28 @@
                     "url": "\/admin\/readers"
                 },
                 {
+                    "title": "Requests",
+                    "url": "\/admin\/requests"
+                },
+
+                {
+                    "title": "Settings",
+                    "url": "\/admin\/settings"
+                },
+                {
+                    "title": "Categories",
+                    "url": "\/admin\/category"
+                },
+                {
+                    "title": "Books",
+                    "url": "\/admin\/book"
+                }
+            ]
+        },
+        {
+            "section": "Tools",
+            "items": [
+                {
                     "title": "Roles",
                     "url": "\/admin\/roles"
                 },
@@ -20,30 +42,9 @@
                     "url": "\/admin\/permissions"
                 },
                 {
-                    "title": "Pages",
-                    "url": "\/admin\/pages"
-                },
-                {
                     "title": "Activity Logs",
                     "url": "\/admin\/activitylogs"
                 },
-                {
-                    "title": "Settings",
-                    "url": "\/admin\/settings"
-                },
-                {
-                    "title": "Category",
-                    "url": "\/admin\/category"
-                },
-                {
-                    "title": "Book",
-                    "url": "\/admin\/book"
-                }
-            ]
-        },
-        {
-            "section": "Tools",
-            "items": [
                 {
                     "title": "Generator",
                     "url": "\/admin\/generator"
