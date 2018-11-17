@@ -18,5 +18,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class BookActions extends Model
 {
-    //
+    public const ACTION_TAKE = 'TAKE';
+    public const ACTION_RETURN = 'RETURN';
 }

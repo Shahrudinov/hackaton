@@ -30,6 +30,14 @@ use Illuminate\Database\Eloquent\Model;
  */
 class UserBook extends Model
 {
+    public const STATUS_RETURNED = 'RETURNED';
+    public const STATUS_TAKEN = 'TAKEN';
+
+    protected $table = 'user_books';
+    protected $fillable = [
+        'user_id', 'book_id', 'count', 'return_date', 'status'
+    ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

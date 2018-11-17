@@ -19,7 +19,18 @@ class CreateUserBooksTable extends Migration
             $table->integer('book_id')->index();
             $table->integer('count');
             $table->timestamp('return_date');
+            $table->enum('status', [
+                'RETURNED', 'TAKEN'
+            ]);
             $table->timestamps();
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+            $table->foreign('book_id')
+                ->references('id')
+                ->on('books');
         });
     }
 
