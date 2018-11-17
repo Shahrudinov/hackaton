@@ -20,11 +20,13 @@ class BookRequestController extends Controller
         $keyword = $request->get('search');
         $perPage = 15;
 
+        $query = BookRequest::where('completed', '=',  false);
+
         if (!empty($keyword)) {
-            $requests = BookRequest::where('name', 'LIKE', "%$keyword%")->orWhere('label', 'LIKE', "%$keyword%")
+            $requests = $query->where('name', 'LIKE', "%$keyword%")->orWhere('label', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $requests = BookRequest::latest()->paginate($perPage);
+            $requests = $query->latest()->paginate($perPage);
         }
 
         return view('admin.book.request', compact('requests'));
@@ -33,11 +35,26 @@ class BookRequestController extends Controller
     /**
      * @param int $id
      * @param RequestBookService $requestBookService
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function done(int $id, RequestBookService $requestBookService)
     {
-        $requestBook = BookRequest::findOrFile($id);
+        $requestBook = BookRequest::find($id);
         $requestBookService->done($requestBook);
         Alert::success('Done');
+        return redirect()->back();
+    }
+
+    /**
+     * @param int $id
+     * @param RequestBookService $requestBookService
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function cancel(int $id, RequestBookService $requestBookService)
+    {
+        $requestBook = BookRequest::find($id);
+        $requestBookService->cancel($requestBook);
+        Alert::success('Request canceled!');
+        return redirect()->back();
     }
 }

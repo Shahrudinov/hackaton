@@ -35,15 +35,24 @@
                                 <tbody>
                                 @foreach($requests as $item)
                                     <tr>
-                                        <td>{{ $loop->iteration or $item->id }}</td>
+                                        <td>{{ $item->id }}</td>
                                         <td>
-                                            <a href="{{url()->route('user.show', $item->user()->id)}}">{{ $item->user->firstName }} {{ $item->user->lastName }}</a>
+                                            <a href="{{url()->route('users.show', ['id' => $item->user()->first()->id])}}">
+                                                {{ $item->user->email }}
+                                            </a>
                                         </td>
                                         <td>
-                                            <a href="{{url()->route('book.swow', $item->book()->id)}}">{{ $item->book->title }}</a>
+                                            <a href="{{url()->route('book.show', ['id' => $item->book()->first()->id])}}">
+                                                {{ $item->book->title }}
+                                            </a>
                                         </td>
                                         <td>
-                                            <a href="{{ url('/admin/book/' . $item->id) }}" title="Approve"><button class="btn btn-info btn-sm">Done</button></a>
+                                            <a href="{{ url()->route('request-book.done', ['id' => $item->id]) }}" title="Done">
+                                                <button class="btn btn-success btn-sm">Done</button>
+                                            </a>
+                                            <a href="{{ url()->route('request-book.cancel', ['id' => $item->id])  }}" title="Cancel">
+                                                <button class="btn btn-danger btn-sm">Cancel</button>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach

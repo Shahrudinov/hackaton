@@ -47,6 +47,9 @@ Route::group(
         Route::get('/', ['uses' => 'AdminController@index']);
 
         Route::get('readers', 'ReaderController@index');
+        Route::get('requests', 'BookRequestController@index');
+        Route::get('requests-done/{id}', 'BookRequestController@done')->name('request-book.done');
+        Route::get('requests-cancel/{id}', 'BookRequestController@cancel')->name('request-book.cancel');
 
         Route::resource('roles', 'RolesController');
         Route::resource('permissions', 'PermissionsController');

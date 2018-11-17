@@ -9,6 +9,11 @@ use App\Models\User;
 
 class RequestBookService
 {
+
+    /**
+     * @param User $user
+     * @param Book $book
+     */
     public function createRequest(User $user, Book $book)
     {
         $bookRequest = new BookRequest();
@@ -19,13 +24,28 @@ class RequestBookService
         $bookRequest->save();
     }
 
+    /**
+     * @param BookRequest $bookRequest
+     */
     public function done(BookRequest $bookRequest)
     {
-        $book = Book::findOrFail($bookRequest->book()->id);
-        $book->count = $book->count - 1;
+        $book = Book::findOrFail($bookRequest->book->id);
+        $book->count = $book->count - $bookRequest->count;
         $book->save();
-        $user = User::findOrFail($bookRequest->user()->id);
-        $user->books()->save($book);
-        BookRequest::deleted($bookRequest);
+        $user = User::findOrFail($bookRequest->user->id);
+        $user->books->add($book);
+
+        $bookRequest->completed = true;
+
+        $bookRequest->save();
+    }
+
+    /**
+     * @param BookRequest $bookRequest
+     */
+    public function cancel(BookRequest $bookRequest)
+    {
+        $bookRequest->completed = true;
+        $bookRequest->save();
     }
 }
