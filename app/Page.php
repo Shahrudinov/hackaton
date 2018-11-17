@@ -19,6 +19,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\Page withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Page withoutTrashed()
  * @mixin \Eloquent
+ * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null $deleted_at
+ * @property string|null $title
+ * @property string|null $content
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Page whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Page whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Page whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Page whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Page whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Page whereUpdatedAt($value)
  */
 class Page extends Model
 {
