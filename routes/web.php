@@ -18,8 +18,23 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/books', 'BooksController@index')->name('books');
+    Route::get('/books', 'BooksController@index')
+        ->name('userBooks.index');
 
+    Route::get('/books/{book}', 'BooksController@show')
+        ->name('userBooks.show')
+        ->where(['book' => '[0-9]+']);
+
+    Route::post('/books/{book}', 'BooksController@store')
+        ->name('userBooks.store')
+        ->where(['id' => '[0-9]+']);
+
+    Route::delete('/books/{book}', 'BooksController@destroy')
+        ->name('userBooks.destroy')
+        ->where(['id' => '[0-9]+']);
+
+    Route::get('/author/{author}', 'AuthorController@show')
+        ->name('author.show')->where(['author' => '[0-9]+']);
 });
 
 Route::group(
@@ -32,7 +47,7 @@ Route::group(
     function () {
         Route::get('/', ['uses' => 'AdminController@index']);
 
-        Route::get('readers', 'ReaderController@index' );
+        Route::get('readers', 'ReaderController@index');
 
         Route::resource('roles', 'RolesController');
         Route::resource('permissions', 'PermissionsController');

@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
  * App\Book
@@ -53,6 +52,22 @@ class Book extends Model
      */
     public function authors()
     {
-        return $this->belongsToMany(Author::class);
+        return $this->belongsToMany(Author::class, 'book_authors');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function userBooks()
+    {
+        return $this->hasMany(UserBook::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function requests()
+    {
+        return $this->hasMany(BookRequest::class);
     }
 }

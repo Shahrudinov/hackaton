@@ -19,12 +19,20 @@
                             >
                             <div class="card-body">
                                 <p class="card-text">
-                                    {{ strlen($book->description) > 250 ? substr($book->description, 0, 250) . '...' : $book->description }}
-                                </p>
+                                <h4>{{ $book->title }}</h4>
+                                {{ strlen($book->description) > 250 ? substr($book->description, 0, 250) . '...' : $book->description }}
+                                <div class="alert alert-info text-sm-left" role="alert">
+                                    В наличии: @if($book->count) {{ $book->count }}
+                                    @else
+                                        <span class="text-danger">нет</span>
+                                    @endif
+                                </div>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Подробнее
-                                        </button>
+                                        <a href="{{ route('userBooks.show', $book) }}" type="button"
+                                           class="btn btn-sm btn-outline-secondary">
+                                            Подробнее
+                                        </a>
                                     </div>
                                     <small class="text-muted">{{ $book->created_at }}</small>
                                 </div>

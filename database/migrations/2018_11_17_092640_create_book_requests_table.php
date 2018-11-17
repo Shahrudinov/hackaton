@@ -19,7 +19,7 @@ class CreateBookRequestsTable extends Migration
             $table->integer('book_id')->index();
             $table->integer('count')->default(1);
             $table->boolean('completed')->default(false);
-            $table->text('comments');
+            $table->text('comments')->nullable();
             $table->timestamps();
 
             /* foreigns */

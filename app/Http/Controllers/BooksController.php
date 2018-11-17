@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class BooksController extends Controller
 {
@@ -34,31 +36,36 @@ class BooksController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Book $book)
     {
-        //
+        try {
+            DB::transaction(function () use ($book, $request) {
+                $book->requests()->create([
+                    'user_id' => Auth::user()->id,
+                    'book_id' => $book->id,
+                    'count' => $request->count,
+                    'completed' => false,
+                    'return_date' => $request->return_date,
+                    'comments' => $request->comment,
+                ]);
+            });
+        } catch (\Throwable $e) {
+            DB::rollBack();
+            throw $e;
+        }
+
+        return back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  Book $book
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Book $book)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return view('books.show', ['book' => $book]);
     }
 
     /**
@@ -76,11 +83,14 @@ class BooksController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param  Book $book
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Book $book)
     {
-        //
+        Auth::user()->requests()->where([
+            'book_id' => $book->id,
+        ])->delete();
+        return back();
     }
 }

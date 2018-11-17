@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\BookRequest;
 use App\HasRoles;
 use App\UserBook;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -67,6 +68,15 @@ class User extends Authenticatable
      */
     public function books()
     {
-        return $this->hasMany(UserBook::class);
+        return $this->hasMany(UserBook::class)
+            ->where('status', '=', UserBook::STATUS_TAKEN);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function requests()
+    {
+        return $this->hasMany(BookRequest::class);
     }
 }

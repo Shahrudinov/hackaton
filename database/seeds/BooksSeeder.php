@@ -88,7 +88,7 @@ class BooksSeeder extends Seeder
                 'title' => 'Test Book',
                 'year' => '1653-01-01',
                 'image' => 'https://hachette.azureedge.net/books/thumbnails/9781473666948.jpg?v=17&scale=both&width=440',
-                'count' => random_int(1, 52),
+                'count' => 0,
                 'created_at' => now()->subDays(random_int(1, 1000)),
                 'updated_at' => now(),
             ],
@@ -138,7 +138,7 @@ class BooksSeeder extends Seeder
         DB::table('book_authors')->insert([
             ['book_id' => 1, 'author_id' => 2, 'created_at' => now(), 'updated_at' => now()], // id 1
             ['book_id' => 1, 'author_id' => 1, 'created_at' => now(), 'updated_at' => now()], // id 2
-            ['book_id' => 1, 'author_id' => 1, 'created_at' => now(), 'updated_at' => now()], // id 3
+            ['book_id' => 2, 'author_id' => 1, 'created_at' => now(), 'updated_at' => now()], // id 3
         ]);
 
         /* Categories */
