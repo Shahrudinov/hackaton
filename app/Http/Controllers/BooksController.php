@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Book;
+use App\BookCategory;
+use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -14,9 +16,21 @@ class BooksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $books = Book::orderBy('created_at', 'desc')->paginate(51);
+        $sort = $request->get('sort');
+
+        switch ($sort) {
+            case 'date':
+                $books = Book::orderBy('created_at', 'desc')->get();
+                break;
+            case 'category':
+                $books = BookCategory::where('id', $request->category)->first()->books;
+                break;
+            default:
+                $books = Book::orderBy('title', 'asc')->get();
+        }
+
         return view('books.index', compact('books'));
     }
 

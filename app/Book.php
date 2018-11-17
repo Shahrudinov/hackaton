@@ -31,6 +31,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Book whereYear($value)
  * @mixin \Eloquent
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Category[] $categories
+ * @property string $description
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\BookRequest[] $requests
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\UserBook[] $userBooks
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Book whereDescription($value)
  */
 class Book extends Model
 {

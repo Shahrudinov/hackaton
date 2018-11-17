@@ -144,13 +144,13 @@ class BooksSeeder extends Seeder
         /* Categories */
         DB::table('book_categories')->insert([
             // Программирование и книга пхп
-            ['book_id' => 2, 'category_id' => 1, 'created_at' => now(), 'updated_at' => now()],
-            ['book_id' => 2, 'category_id' => 4, 'created_at' => now(), 'updated_at' => now()],
-            ['book_id' => 2, 'category_id' => 5, 'created_at' => now(), 'updated_at' => now()],
+            ['book_id' => 1, 'category_id' => 1, 'created_at' => now(), 'updated_at' => now()],
+            ['book_id' => 1, 'category_id' => 4, 'created_at' => now(), 'updated_at' => now()],
+            ['book_id' => 1, 'category_id' => 3, 'created_at' => now(), 'updated_at' => now()],
 
             // Стивен кинг
-            ['book_id' => 1, 'category_id' => 2, 'created_at' => now(), 'updated_at' => now()],
-            ['book_id' => 1, 'category_id' => 3, 'created_at' => now(), 'updated_at' => now()],
+            ['book_id' => 2, 'category_id' => 2, 'created_at' => now(), 'updated_at' => now()],
+            ['book_id' => 2, 'category_id' => 3, 'created_at' => now(), 'updated_at' => now()],
         ]);
     }
 }
