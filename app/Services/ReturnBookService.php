@@ -31,7 +31,7 @@ class ReturnBookService
             $nullBooksRequests = BookRequest::oldest()
                 ->where('book_id', $book->id)
                 ->where('completed', false)
-                ->get(['user_id']);
+                ->first(['user_id']);
 
             Mail::to(User::find($nullBooksRequests->user_id))->send(new BookAllowed($book));
         }

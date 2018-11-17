@@ -44,10 +44,6 @@
                 {
                     "title": "Activity Logs",
                     "url": "\/admin\/activitylogs"
-                },
-                {
-                    "title": "Generator",
-                    "url": "\/admin\/generator"
                 }
             ]
         }
