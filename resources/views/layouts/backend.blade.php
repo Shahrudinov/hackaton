@@ -85,6 +85,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    @include('sweet::alert')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.8.1/tinymce.min.js"></script>
     <script type="text/javascript">
         tinymce.init({
