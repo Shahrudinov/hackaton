@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Book;
 use App\BookRequest;
 use App\HasRoles;
 use App\UserBook;
@@ -65,12 +66,11 @@ class User extends Authenticatable
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function books()
     {
-        return $this->hasMany(UserBook::class)
-            ->where('status', '=', UserBook::STATUS_TAKEN);
+        return $this->hasMany(UserBook::class);
     }
 
     /**

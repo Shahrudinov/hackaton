@@ -23,7 +23,9 @@ class BookRequestController extends Controller
         $query = BookRequest::where('completed', '=',  false);
 
         if (!empty($keyword)) {
-            $requests = $query->where('name', 'LIKE', "%$keyword%")->orWhere('label', 'LIKE', "%$keyword%")
+            $requests = $query
+                ->where('name', 'LIKE', "%$keyword%")
+                ->orWhere('label', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
             $requests = $query->latest()->paginate($perPage);

@@ -33,7 +33,12 @@ class RequestBookService
         $book->count = $book->count - $bookRequest->count;
         $book->save();
         $user = User::findOrFail($bookRequest->user->id);
-        $user->books->add($book);
+        $user->books()->create([
+            'user_id' => $user->id,
+            'book_id' => $book->id,
+            'count' => $bookRequest->count,
+            'return_date' => $bookRequest->return_date
+        ]);
 
         $bookRequest->completed = true;
 
