@@ -14,9 +14,19 @@ class BooksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $books = Book::orderBy('created_at', 'desc')->paginate(51);
+        $sort = $request->get('sort');
+
+        switch ($sort) {
+            case 'date':
+                $books = Book::orderBy('created_at', 'desc');
+                break;
+            default:
+                $books = Book::orderBy('title', 'asc');
+        }
+
+        $books = $books->paginate(51);
         return view('books.index', compact('books'));
     }
 

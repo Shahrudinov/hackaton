@@ -3,7 +3,15 @@
 @section('content')
 
     <blockquote class="blockquote text-center">
-        <p class="mb-0">Последние поступления</p>
+        <div class="btn-group" role="group" aria-label="Basic example">
+            @php
+                if (\Illuminate\Support\Facades\Request::has('sort')) {
+                $active = \Illuminate\Support\Facades\Request::get('sort');
+                } else { $active = null; }
+            @endphp
+            <a href="?sort=title" class="btn btn-outline-info {{$active === 'title' ? 'active' : ''}}">По Названию</a>
+            <a href="?sort=date" class="btn btn-outline-info {{$active === 'date' ? 'active' : ''}}">По Дате</a>
+        </div>
     </blockquote>
 
     <div class="album py-5 bg-light">
