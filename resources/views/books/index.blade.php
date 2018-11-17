@@ -9,6 +9,7 @@
                 $active = \Illuminate\Support\Facades\Request::get('sort');
                 } else { $active = null; }
             @endphp
+            <a href="?sort=stock" class="btn btn-outline-info {{$active === 'stock' ? 'active' : ''}}">В Наличии</a>
             <a href="?sort=title" class="btn btn-outline-info {{$active === 'title' ? 'active' : ''}}">По Названию</a>
             <a href="?sort=date" class="btn btn-outline-info {{$active === 'date' ? 'active' : ''}}">По Дате</a>
 

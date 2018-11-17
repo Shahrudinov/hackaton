@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Book;
 use App\BookCategory;
-use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -26,6 +25,9 @@ class BooksController extends Controller
                 break;
             case 'category':
                 $books = BookCategory::where('id', $request->category)->first()->books;
+                break;
+            case 'stock':
+                $books = Book::where('count', '>', 0)->orderBy('created_at', 'desc')->get();
                 break;
             default:
                 $books = Book::orderBy('title', 'asc')->get();
