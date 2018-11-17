@@ -34,3 +34,5 @@ Route::resource('admin/activitylogs', 'Admin\ActivityLogsController')->only([
 Route::resource('admin/settings', 'Admin\SettingsController');
 Route::get('admin/generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@getGenerator']);
 Route::post('admin/generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@postGenerator']);
+
+Route::resource('admin/category', 'Admin\\CategoryController');
