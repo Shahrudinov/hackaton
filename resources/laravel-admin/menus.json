@@ -4,10 +4,6 @@
             "section": "Resources",
             "items": [
                 {
-                    "title": "Users",
-                    "url": "\/admin\/users"
-                },
-                {
                     "title": "Readers",
                     "url": "\/admin\/readers"
                 },
@@ -33,6 +29,10 @@
         {
             "section": "Tools",
             "items": [
+                {
+                    "title": "Users",
+                    "url": "\/admin\/users"
+                },
                 {
                     "title": "Roles",
                     "url": "\/admin\/roles"

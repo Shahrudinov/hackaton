@@ -11,13 +11,40 @@ namespace App\Services;
 
 use App\Book;
 use App\Models\User;
+use App\UserBook;
 
 class ReturnBookService
 {
-    public function returnBook(User $user, Book $book)
+    /**
+     * @param User $user
+     * @param Book $book
+     * @throws \Exception
+     */
+    public function returnBook(User $user, Book $book): void
     {
-        $book->count = $book->count + 1;
+        $userBook = UserBook::where([
+           'user_id' => $user->id,
+           'book_id' => $book->id
+        ]);
+        $book->count += $userBook->count;
         $book->save();
-        $user->books()->delete($book);
+        $userBook->delete();
+    }
+
+    /**
+     * @param User $user
+     * @throws \Exception
+     */
+    public function returnAll(User $user): void
+    {
+        $userBooks = UserBook::where([
+            'user_id' => $user->id,
+        ]);
+
+        foreach ($userBooks as $userBook) {
+            $book = Book::find($userBook->book_id);
+            $this->returnBook($user, $book);
+        }
+        $user->books()->delete();
     }
 }

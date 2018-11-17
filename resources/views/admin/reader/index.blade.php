@@ -25,29 +25,31 @@
                             <table class="table table-borderless">
                                 <thead>
                                 <tr>
-                                    <th>#</th><th>Title</th><th>Author</th><th>Year</th><th>Actions</th>
+                                    <th>#</th>
+                                    <th>email</th>
+                                    <th>books</th>
+                                    <th>Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($readers as $item)
                                     <tr>
-                                        <td>{{ $loop->iteration or $item->id }}</td>
-                                        <td>{{ $item->title }}</td><td>{{ $item->author }}</td><td>{{ $item->year }}</td>
+                                        <td>{{ $item->id }}</td>
                                         <td>
-                                            <a href="{{ url('/admin/book/' . $item->id) }}" title="View Book"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></button></a>
-                                            <a href="{{ url('/admin/book/' . $item->id . '/edit') }}" title="Edit Book"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
-                                            {!! Form::open([
-                                                'method' => 'DELETE',
-                                                'url' => ['/admin/book', $item->id],
-                                                'style' => 'display:inline'
-                                            ]) !!}
-                                            {!! Form::button('<i class="fa fa-trash-o" aria-hidden="true"></i>', array(
-                                                    'type' => 'submit',
-                                                    'class' => 'btn btn-danger btn-sm',
-                                                    'title' => 'Delete Book',
-                                                    'onclick'=>'return confirm("Confirm delete?")'
-                                            )) !!}
-                                            {!! Form::close() !!}
+                                            <a href="{{url()->route('users.show', ['id' => $item->id])}}">
+                                                {{ $item->email }}
+                                            </a>
+                                        </td>
+                                            <td>
+                                                @foreach($item->books as $userBook)
+                                                <a href="{{url()->route('book.show', ['id' => $userBook->book_id])}}">
+                                                    <span>{{ App\Book::find($userBook->book_id)->title }}</span>
+                                                </a> - <span>{{ $userBook->count }}</span>, &nbsp;
+
+                                                @endforeach
+                                            </td>
+                                        <td>
+                                            <a href="{{ url()->route('reader.return-all', ['id' => $item->id]) }}" title="View Book"><button class="btn btn-success btn-sm">Return all</button></a>
                                         </td>
                                     </tr>
                                 @endforeach
