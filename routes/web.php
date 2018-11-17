@@ -23,7 +23,12 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::group(
-    ['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'roles'], 'roles' => ['admin', 'librarian']],
+    [
+        'namespace' => 'Admin',
+        'prefix' => 'admin',
+        'middleware' => ['auth', 'roles'],
+        'roles' => ['admin', 'librarian']
+    ],
     function () {
         Route::get('/', ['uses' => 'AdminController@index']);
 
