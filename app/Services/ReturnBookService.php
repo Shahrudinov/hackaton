@@ -20,15 +20,23 @@ class ReturnBookService
      * @param Book $book
      * @throws \Exception
      */
-    public function returnBook(User $user, Book $book): void
+    public function returnBook(User $user, Book $book, int $count = null): void
     {
         $userBook = UserBook::where([
            'user_id' => $user->id,
            'book_id' => $book->id
         ]);
-        $book->count += $userBook->count;
+        if ($count) {
+            $book->count += $count;
+            $userBook->count -= $count;
+        } else {
+            $book->count += $userBook->count;
+
+        }
         $book->save();
-        $userBook->delete();
+        if ($userBook->count < 1) {
+            $userBook->delete();
+        }
     }
 
     /**

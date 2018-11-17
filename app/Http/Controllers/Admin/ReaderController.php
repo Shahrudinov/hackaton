@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Book;
 use App\Models\User;
 use App\Services\ReturnBookService;
 use Illuminate\Http\Request;
@@ -33,6 +34,19 @@ class ReaderController extends Controller
         $readers = $query->paginate($perPage);
 
         return view('admin.reader.index', compact('readers'));
+    }
+
+    public function returnBook(Request $request, ReturnBookService $returnBookService)
+    {
+        $user = User::find($request->get('user'));
+        $book = Book::find($request->get('book'));
+        $count = $request->get('count');
+
+        $returnBookService->returnBook($user, $book, $count);
+
+        Alert::success('Success');
+        return redirect()->back();
+
     }
 
     public function returnAll(int $id, ReturnBookService $returnBookService)

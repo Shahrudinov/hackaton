@@ -13951,7 +13951,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(13);
-module.exports = __webpack_require__(44);
+module.exports = __webpack_require__(45);
 
 
 /***/ }),
@@ -13996,6 +13996,8 @@ Vue.component('example-component', __webpack_require__(40));
 var app = new Vue({
   el: '#app'
 });
+
+__webpack_require__(44);
 
 /***/ }),
 /* 14 */
@@ -47435,6 +47437,32 @@ if (false) {
 
 /***/ }),
 /* 44 */
+/***/ (function(module, exports) {
+
+$(document).ready(function () {
+
+    $('.return-book').on('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        $el = $(e.currentTarget);
+
+        var title = $el.data('title');
+        var user = $el.data('user');
+        var book = $el.data('book');
+        var count = $el.data('count');
+
+        $('.modal-title').text(title);
+        $('#count-book').attr('max', count);
+        $('#return-book-book').val(book);
+        $('#return-book-user').val(user);
+
+        $('.modal').modal('show');
+    });
+});
+
+/***/ }),
+/* 45 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

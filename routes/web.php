@@ -47,6 +47,7 @@ Route::group(
         Route::get('/', ['uses' => 'AdminController@index']);
 
         Route::get('readers', 'ReaderController@index');
+        Route::post('readers', 'ReaderController@returnBook')->name('reader.return-book');
         Route::get('readers/{id}', 'ReaderController@returnAll')->name('reader.return-all');
         Route::get('requests', 'BookRequestController@index');
         Route::get('requests-done/{id}', 'BookRequestController@done')->name('request-book.done');

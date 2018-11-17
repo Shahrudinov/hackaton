@@ -42,7 +42,13 @@
                                         </td>
                                             <td>
                                                 @foreach($item->books as $userBook)
-                                                <a href="{{url()->route('book.show', ['id' => $userBook->book_id])}}">
+                                                <a href="{{url()->route('book.show', ['id' => $userBook->book_id])}}"
+                                                   class="return-book"
+                                                   data-user="{{$item->id}}"
+                                                   data-title="{{ App\Book::find($userBook->book_id)->title }}"
+                                                   data-count="{{ $userBook->count }}"
+                                                   data-book="{{$userBook->book_id}}"
+                                                    >
                                                     <span>{{ App\Book::find($userBook->book_id)->title }}</span>
                                                 </a> - <span>{{ $userBook->count }}</span>, &nbsp;
 

@@ -72,7 +72,10 @@
             @endif
 
             @yield('content')
+
+
         </main>
+        @include('modal.admin')
 
         <hr/>
 
@@ -82,7 +85,6 @@
         </div>
 
     </div>
-
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     @include('sweet::alert')
