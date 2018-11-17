@@ -8,6 +8,10 @@
                     "url": "\/admin\/users"
                 },
                 {
+                    "title": "Readers",
+                    "url": "\/admin\/readers"
+                },
+                {
                     "title": "Roles",
                     "url": "\/admin\/roles"
                 },

@@ -27,6 +27,8 @@ Route::group(
     function () {
         Route::get('/', ['uses' => 'AdminController@index']);
 
+        Route::get('readers', 'ReaderController@index' );
+
         Route::resource('roles', 'RolesController');
         Route::resource('permissions', 'PermissionsController');
         Route::resource('users', 'UsersController');
