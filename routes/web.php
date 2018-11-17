@@ -20,18 +20,25 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/books', 'BooksController@index')->name('books');
 
-    Route::get('admin', 'Admin\AdminController@index');
-    Route::resource('admin/roles', 'Admin\RolesController');
-    Route::resource('admin/permissions', 'Admin\PermissionsController');
-    Route::resource('admin/users', 'Admin\UsersController');
-    Route::resource('admin/pages', 'Admin\PagesController');
-    Route::resource('admin/activitylogs', 'Admin\ActivityLogsController')->only([
-        'index', 'show', 'destroy'
-    ]);
-    Route::resource('admin/settings', 'Admin\SettingsController');
-    Route::get('admin/generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@getGenerator']);
-    Route::post('admin/generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@postGenerator']);
-
-    Route::resource('admin/category', 'Admin\\CategoryController');
-    Route::resource('admin/book', 'Admin\\BookController');
 });
+
+Route::group(
+    ['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'roles'], 'roles' => ['admin', 'librarian']],
+    function () {
+        Route::get('/', ['uses' => 'AdminController@index']);
+
+        Route::resource('roles', 'RolesController');
+        Route::resource('permissions', 'PermissionsController');
+        Route::resource('users', 'UsersController');
+        Route::resource('pages', 'PagesController');
+        Route::resource('activitylogs', 'ActivityLogsController')->only([
+            'index', 'show', 'destroy'
+        ]);
+        Route::resource('settings', 'SettingsController');
+        Route::get('generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@getGenerator']);
+        Route::post('generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@postGenerator']);
+
+        Route::resource('category', 'CategoryController');
+        Route::resource('book', 'BookController');
+    });
+
