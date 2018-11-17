@@ -27,16 +27,6 @@ class UsersTableSeeder extends Seeder
         ]);
 
         User::create([
-            // 'id' => 2,
-            'first_name' => 'shamil',
-            'last_name' => 'shahrudinov',
-            'email' => 'shama@i.ua',
-            'password' => bcrypt('password42'),
-            'phone_number' => '0951443002',
-            'skype' => 'shahrudinov'
-        ]);
-
-        User::create([
             // 'id' => 3,
             'first_name' => 'librarian',
             'last_name' => 'librarian',
@@ -46,7 +36,18 @@ class UsersTableSeeder extends Seeder
             'skype' => 'librarian'
         ]);
 
-                                  /**ROLE**/
+        User::create([
+            // 'id' => 2,
+            'first_name' => 'shamil',
+            'last_name' => 'shahrudinov',
+            'email' => 'shama@i.ua',
+            'password' => bcrypt('password42'),
+            'phone_number' => '0951443002',
+            'skype' => 'shahrudinov'
+        ]);
+
+
+        /**ROLE**/
         Role::create([
             // 'id' => 1,
             'name' => 'admin'
