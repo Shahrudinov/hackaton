@@ -62,18 +62,18 @@ class UsersTableSeeder extends Seeder
             'name' => 'reader'
         ]);
 
-                                /**  **/
-        HasRoles::create([
+                                /** has role  **/
+        DB::table('role_user')->insert([
             'user_id' => 1,
             'role_id' => 1,
         ]);
 
-        HasRoles::create([
-            'user_id' => 3,
-            'role_id' => 3,
+        DB::table('role_user')->insert([
+            'user_id' => 2,
+            'role_id' => 2,
         ]);
 
-        HasRoles::create([
+        DB::table('role_user')->insert([
             'user_id' => 3,
             'role_id' => 3,
         ]);
