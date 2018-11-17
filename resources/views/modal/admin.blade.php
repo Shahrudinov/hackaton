@@ -1,6 +1,8 @@
 <div class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
+            <form action="{{ route('reader.return-book') }}" method="POST" id="return-book-form">
+                @CSRF
             <div class="modal-header">
                 <h5 class="modal-title">Modal title</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -8,7 +10,6 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('reader.return-book') }}" id="return-book-form">
                     <div class="form-group row">
                         <label for="count-book" class="col-sm-2 col-form-label">Count</label>
                         <div class="col-sm-10">
@@ -17,12 +18,12 @@
                             <input type="hidden" id="return-book-user" name="user">
                         </div>
                     </div>
-                </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Return book</button>
+                <button type="submit" class="btn btn-primary">Return book</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
+            </form>
         </div>
     </div>
 </div>

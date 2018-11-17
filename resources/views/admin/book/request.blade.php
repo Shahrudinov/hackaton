@@ -29,6 +29,7 @@
                                     <th>#</th>
                                     <th>User</th>
                                     <th>Book</th>
+                                    <th>Count</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
@@ -45,6 +46,9 @@
                                             <a href="{{url()->route('book.show', ['id' => $item->book()->first()->id])}}">
                                                 {{ $item->book->title }}
                                             </a>
+                                        </td>
+                                        <td>
+                                            {{$item->count}}
                                         </td>
                                         <td>
                                             <a href="{{ url()->route('request-book.done', ['id' => $item->id]) }}" title="Done">

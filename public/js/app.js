@@ -47454,6 +47454,7 @@ $(document).ready(function () {
 
         $('.modal-title').text(title);
         $('#count-book').attr('max', count);
+        $('#count-book').val(count);
         $('#return-book-book').val(book);
         $('#return-book-user').val(user);
 
