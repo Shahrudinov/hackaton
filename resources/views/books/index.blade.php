@@ -11,7 +11,7 @@
             @endphp
             <a href="?sort=stock" class="btn btn-outline-info {{$active === 'stock' ? 'active' : ''}}">В Наличии</a>
             <a href="?sort=title" class="btn btn-outline-info {{$active === 'title' ? 'active' : ''}}">По Названию</a>
-            <a href="?sort=date" class="btn btn-outline-info {{$active === 'date' ? 'active' : ''}}">По Дате</a>
+            <a href="?sort=date" class="btn btn-outline-info {{$active === 'date' ? 'active' : ''}}">Сначала новые</a>
 
             <div class="btn-group" role="group">
                 <button id="btnGroupDrop1" type="button"
