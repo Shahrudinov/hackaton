@@ -17,7 +17,7 @@ class UsersTableSeeder extends Seeder
 
                             /**USER**/
         User::create([
-            'id' => 1,
+            // 'id' => 1,
             'first_name' => 'admin',
             'last_name' => 'admin',
             'email' => 'admin@mail.com',
@@ -27,7 +27,7 @@ class UsersTableSeeder extends Seeder
         ]);
 
         User::create([
-            'id' => 2,
+            // 'id' => 2,
             'first_name' => 'shamil',
             'last_name' => 'shahrudinov',
             'email' => 'shama@i.ua',
@@ -37,7 +37,7 @@ class UsersTableSeeder extends Seeder
         ]);
 
         User::create([
-            'id' => 3,
+            // 'id' => 3,
             'first_name' => 'librarian',
             'last_name' => 'librarian',
             'email' => 'librarian@mail.com',
@@ -48,17 +48,17 @@ class UsersTableSeeder extends Seeder
 
                                   /**ROLE**/
         Role::create([
-            'id' => 1,
+            // 'id' => 1,
             'name' => 'admin'
         ]);
 
         Role::create([
-            'id' => 2,
+            // 'id' => 2,
             'name' => 'librarian'
         ]);
 
         Role::create([
-            'id' => 3,
+            // 'id' => 3,
             'name' => 'reader'
         ]);
 
