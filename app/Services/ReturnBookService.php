@@ -42,6 +42,16 @@ class ReturnBookService
      */
     public function returnBook(User $user, Book $book): void
     {
+        // Send email if user wait for book
+        if ($book->count === 0) {
+            $nullBooksRequests = BookRequest::oldest()
+                ->where('book_id', $book->id)
+                ->where('completed', false)
+                ->get(['user_id']);
+
+            Mail::to(User::find($nullBooksRequests->user_id))->send(new BookAllowed($book));
+        }
+
         $userBook = UserBook::where([
             'user_id' => $user->id,
             'book_id' => $book->id
@@ -49,12 +59,5 @@ class ReturnBookService
         $book->count += $userBook->count;
         $book->save();
         $userBook->delete();
-
-        $nullBooksRequests = BookRequest::oldest()
-            ->where('book_id', $book->id)
-            ->where('completed', false)
-            ->get(['user_id']);
-
-        Mail::to(User::find($nullBooksRequests->user_id))->send(new BookAllowed($book));
     }
 }
