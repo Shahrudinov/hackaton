@@ -28,7 +28,7 @@
         {{-- Если книга ещё не в списке брони --}}
         @if(!auth()->user()->requests->where('book_id', $book->id)->where('completed', false)->isEmpty())
             <form id="unbook" action="{{ route('userBooks.destroy', $book) }}" method="post">
-                <button class="btn btn-outline-success disabled" disabled>Забронировано</button>
+                <button class="btn btn-outline-success disabled" disabled>Запрос отправлен</button>
                 <button type="submit" class="btn btn-danger">Снять бронь</button>
                 @csrf
                 @method('delete')

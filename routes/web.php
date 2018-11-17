@@ -22,7 +22,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/books', 'BooksController@index')->name('userBooks.index');
     Route::get('/books/{book}', 'BooksController@show')->name('userBooks.show')
-    ->where(['book' => '[0-9]+']);
+        ->where(['book' => '[0-9]+']);
 
     Route::post('/books/{book}', 'BooksController@store')
         ->name('userBooks.store')
@@ -63,3 +63,6 @@ Route::group(
         Route::resource('book', 'BookController');
     });
 
+Route::group(['prefix' => 'profile', 'middleware' => 'auth'], function () {
+    Route::get('/', 'ProfileController@show')->name('profile.show');
+});
