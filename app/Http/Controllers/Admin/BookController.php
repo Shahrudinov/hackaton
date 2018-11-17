@@ -60,6 +60,10 @@ class BookController extends Controller
 			'count' => 'required'
 		]);
         $requestData = $request->all();
+
+        $extension = $request->file('image')->getClientOriginalExtension();
+        $fileNameToStore = time().'.'.$extension;
+        $requestData['image'] = $request->file('image')->storeAs('public/ads', $fileNameToStore);
         
         Book::create($requestData);
 
