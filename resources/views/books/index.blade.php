@@ -74,7 +74,7 @@
                                                 }
                                             }
                                         @endphp
-                                        Рейтинг: {{ $estimate / ($users === 0 ? 1 : $users)  }} / {{ $users }}
+                                        Рейтинг: {{ $estimate / ($users === 0 ? 1 : $users)  }}  (Проголосовали: {{ $users }})
                                     </small>
                                 </div>
                             </div>

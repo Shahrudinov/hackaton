@@ -27,7 +27,7 @@
                             }
                         }
                     @endphp
-                    Рейтинг: {{ $estimate / ($users === 0 ? 1 : $users)  }} / {{ $users }}
+                    Рейтинг: {{ $estimate / ($users === 0 ? 1 : $users)  }} (Проголосовали: {{ $users }})
                 </small>
                 <p class="text-black-50 mt-md-4 mt-3">
                     {{ $book->description }}
