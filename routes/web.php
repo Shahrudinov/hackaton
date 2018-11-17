@@ -36,3 +36,4 @@ Route::get('admin/generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\Pr
 Route::post('admin/generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@postGenerator']);
 
 Route::resource('admin/category', 'Admin\\CategoryController');
+Route::resource('admin/book', 'Admin\\BookController');
