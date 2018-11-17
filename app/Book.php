@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -61,11 +62,11 @@ class Book extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function userBooks()
+    public function users()
     {
-        return $this->hasMany(UserBook::class);
+        return $this->belongsToMany(User::class, 'user_books');
     }
 
     /**
