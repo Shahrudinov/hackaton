@@ -30,6 +30,9 @@ class RequestBookService
     public function done(BookRequest $bookRequest)
     {
         $book = Book::findOrFail($bookRequest->book->id);
+        if ($book->count < $bookRequest->count) {
+            return false;
+        }
         $book->count -= $bookRequest->count;
         $book->save();
         $user = User::findOrFail($bookRequest->user->id);
@@ -44,6 +47,7 @@ class RequestBookService
         $bookRequest->completed = true;
 
         $bookRequest->save();
+        return true;
     }
 
     /**

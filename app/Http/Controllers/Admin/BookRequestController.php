@@ -42,8 +42,12 @@ class BookRequestController extends Controller
     public function done(int $id, RequestBookService $requestBookService)
     {
         $requestBook = BookRequest::find($id);
-        $requestBookService->done($requestBook);
-        Alert::success('Done');
+        $result = $requestBookService->done($requestBook);
+        if ($result) {
+            Alert::success('Done');
+        } else {
+            Alert::error('not enough books in stock');
+        }
         return redirect()->back();
     }
 
