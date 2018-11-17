@@ -15,6 +15,22 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\BookRequest newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\BookRequest query()
  * @mixin \Eloquent
+ * @property int $id
+ * @property int $user_id
+ * @property int $book_id
+ * @property int $count
+ * @property bool $completed
+ * @property string $comments
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\BookRequest whereBookId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\BookRequest whereComments($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\BookRequest whereCompleted($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\BookRequest whereCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\BookRequest whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\BookRequest whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\BookRequest whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\BookRequest whereUserId($value)
  */
 class BookRequest extends Model
 {
