@@ -19,7 +19,7 @@
                 @endforeach
 
             @else
-                <span>Я ничего не читаю</span>
+                <span>Книг нет</span>
             @endif
         </div>
 
@@ -32,6 +32,8 @@
                         {{ $request->book->title }}
                     </a>
                 @endforeach
+            @else
+                <span>Запросов нет</span>
             @endif
         </div>
     </div>
