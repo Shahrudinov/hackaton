@@ -134,26 +134,30 @@
         <div class="comments">
 
             <h5>Отзывы: </h5>
-            @foreach ($book->reviews as $review)
-                <div class="media">
-                    {{--<img class="mr-3" src="..." alt="Generic placeholder image">--}}
-                    <div class="media-body">
-                        <a href="{{ route('profile.show', $review->user) }}">
-                            <h5 class="mt-0">
-                                {{ $review->user->first_name }} {{ $review->user->last_name }}
-                            </h5>
-                        </a>
-                        <p>
-                            <small>Оценка: {{ $review->stars }}</small>
-                        </p>
-                        {{ $review->comment }}
+            @if($book->reviews->isEmpty())
+                Пока отзывов нет. Хотите быть первым?
+            @else
+                @foreach ($book->reviews as $review)
+                    <div class="media">
+                        {{--<img class="mr-3" src="..." alt="Generic placeholder image">--}}
+                        <div class="media-body">
+                            <a href="{{ route('profile.show', $review->user) }}">
+                                <h5 class="mt-0">
+                                    {{ $review->user->first_name }} {{ $review->user->last_name }}
+                                </h5>
+                            </a>
+                            <p>
+                                <small>Оценка: {{ $review->stars }}</small>
+                            </p>
+                            {{ $review->comment }}
+                        </div>
+                        <div class="media-body">
+                            <small>{{ $review->created_at->diffForHumans() }}</small>
+                        </div>
                     </div>
-                    <div class="media-body">
-                        <small>{{ $review->created_at->diffForHumans() }}</small>
-                    </div>
-                </div>
-                <hr>
-            @endforeach
+                    <hr>
+                @endforeach
+            @endif
         </div>
 
         <hr>
