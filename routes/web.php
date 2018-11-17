@@ -15,6 +15,10 @@ Route::get('/', function () {
     return redirect('/books');
 });
 
+Route::get('/home', function () {
+    return redirect('/books');
+});
+
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {

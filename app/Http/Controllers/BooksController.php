@@ -31,7 +31,7 @@ class BooksController extends Controller
                 $books = Book::where('count', '>', 0)->orderBy('created_at', 'desc')->get();
                 break;
             default:
-                $books = Book::orderBy('title', 'asc')->get();
+                $books = Book::orderBy('created_at', 'desc')->get();
         }
 
         return view('books.index', compact('books'));

@@ -27,7 +27,7 @@
                             }
                         }
                     @endphp
-                    Рейтинг: {{ $estimate / ($users === 0 ? 1 : $users)  }} (Проголосовали: {{ $users }})
+                    Рейтинг: {{ round($estimate / ($users === 0 ? 1 : $users), 2)  }} (Проголосовали: {{ $users }})
                 </small>
                 <p class="text-black-50 mt-md-4 mt-3">
                     {{ $book->description }}
@@ -138,7 +138,9 @@
                 <div class="media">
                     {{--<img class="mr-3" src="..." alt="Generic placeholder image">--}}
                     <div class="media-body">
-                        <h5 class="mt-0">{{ $review->user->first_name }} {{ $review->user->last_name }}</h5>
+                        <a href="{{ route('profile.show', $review->user) }}">
+                            <h5 class="mt-0">{{ $review->user->first_name }} {{ $review->user->last_name }}</h5>
+                        </a>
                         <p>
                             <small>Оценка: {{ $review->stars }}</small>
                         </p>
@@ -151,7 +153,7 @@
         <hr>
         <form action="{{ route('review.store', $book) }}" method="post">
             <div class="form-group">
-                <label for="comment">Комментарий:</label>
+                <label for="comment">Комментарий: <span class="text-danger">*</span></label>
                 <textarea class="form-control" id="comment" name="comment" rows="3" required></textarea>
             </div>
 

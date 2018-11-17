@@ -74,7 +74,7 @@
                                                 }
                                             }
                                         @endphp
-                                        Рейтинг: {{ $estimate / ($users === 0 ? 1 : $users)  }}  (Проголосовали: {{ $users }})
+                                        Рейтинг: {{ round($estimate / ($users === 0 ? 1 : $users), 2)  }}  (Проголосовали: {{ $users }})
                                     </small>
                                 </div>
                             </div>
