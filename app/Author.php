@@ -28,4 +28,12 @@ class Author extends Model
     protected $fillable = [
         'name', 'link'
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function books()
+    {
+        return $this->belongsToMany(Book::class, 'book_authors');
+    }
 }

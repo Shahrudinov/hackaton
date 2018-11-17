@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Author;
 use App\Book;
 use App\BookCategory;
 use App\Review;
@@ -29,6 +30,9 @@ class BooksController extends Controller
                 break;
             case 'stock':
                 $books = Book::where('count', '>', 0)->orderBy('created_at', 'desc')->get();
+                break;
+            case 'author':
+                $books = Author::where('id', $request->author)->first()->books;
                 break;
             default:
                 $books = Book::orderBy('created_at', 'desc')->get();

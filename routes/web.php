@@ -36,7 +36,9 @@ Route::group(['middleware' => 'auth'], function () {
         ->name('userBooks.destroy')
         ->where(['id' => '[0-9]+']);
 
-    Route::get('/author/{author}', 'AuthorController@show')
+    Route::get('/author/{author}', function ($author) {
+        return redirect()->route('userBooks.index', ['sort' => 'author', 'author' => $author]);
+    })
         ->name('author.show')->where(['author' => '[0-9]+']);
 
     Route::post('/books/{book}/review', 'BooksController@storeReview')

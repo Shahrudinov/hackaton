@@ -28,6 +28,22 @@
                     @endforeach
                 </div>
             </div>
+
+            <div class="btn-group" role="group">
+                <button id="btnGroupDrop1" type="button"
+                        class="btn btn-outline-info dropdown-toggle {{$active === 'author' ? 'active' : ''}}"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    По автору
+                </button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    @foreach(\App\Author::all() as $author)
+                        <a class="dropdown-item"
+                           href="?sort=author&author={{$author->id}}">
+                            {{ $author->name }}
+                        </a>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </blockquote>
 
