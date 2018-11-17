@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/books', 'BooksController@index')->name('books');
+    Route::post('/create-request', 'BookRequestController@create');
 
 });
 
@@ -33,6 +34,7 @@ Route::group(
         Route::get('/', ['uses' => 'AdminController@index']);
 
         Route::get('readers', 'ReaderController@index' );
+        Route::get('requests', 'BookRequestController@index' );
 
         Route::resource('roles', 'RolesController');
         Route::resource('permissions', 'PermissionsController');
