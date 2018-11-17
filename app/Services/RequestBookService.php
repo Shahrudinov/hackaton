@@ -22,6 +22,8 @@ class RequestBookService
     public function done(BookRequest $bookRequest)
     {
         $book = Book::findOrFail($bookRequest->book()->id);
+        $book->count = $book->count - 1;
+        $book->save();
         $user = User::findOrFail($bookRequest->user()->id);
         $user->books()->save($book);
         BookRequest::deleted($bookRequest);
