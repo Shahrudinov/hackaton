@@ -20,7 +20,9 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
     Route::post('/create-request', 'BookRequestController@create');
 
-    Route::get('/books', 'BooksController@index')->name('books');
+    Route::get('/books', 'BooksController@index')->name('userBooks.index');
+    Route::get('/books/{book}', 'BooksController@show')->name('userBooks.show')
+    ->where(['book' => '[0-9]+']);
 
     Route::post('/books/{book}', 'BooksController@store')
         ->name('userBooks.store')
